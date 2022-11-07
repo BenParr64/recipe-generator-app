@@ -4,6 +4,7 @@ import SuccessMessage from "../SuccessMessage/SuccessMessage";
 
 const RecipeWrapper = () => {
   const [submitted, setSubmitted] = useState(false);
+
   return !submitted ? (
     <RecipeGenerator setSubmitted={setSubmitted} />
   ) : (

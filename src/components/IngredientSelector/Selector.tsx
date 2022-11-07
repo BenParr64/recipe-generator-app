@@ -9,7 +9,7 @@ import "./styles.css";
 
 interface SelectorProps {
   label: string;
-  ingredientType: "malt" | "hop"
+  ingredientType: "malt" | "hop";
 }
 
 const Selector = ({ label, ingredientType }: SelectorProps) => {
@@ -20,13 +20,13 @@ const Selector = ({ label, ingredientType }: SelectorProps) => {
 
   const handleClick = (product: Product) => {
     setSelected(product.id.toString());
-    const { id, name, regular_price } = product;
+    const { id, name, price } = product;
 
     const quantity = 1;
     const currentProduct = {
       id: id,
       name: name,
-      price: parseFloat(regular_price), 
+      price: price,
       quantity: quantity,
       ingredientType: ingredientType,
     } as ProductLine;
@@ -54,7 +54,8 @@ const Selector = ({ label, ingredientType }: SelectorProps) => {
     getProducts(getCategoryId(ingredientType)).then((products) => {
       setProducts(products);
     });
-  });
+    console.log("Test");
+  }, []);
 
   return (
     <FormControl
@@ -62,9 +63,7 @@ const Selector = ({ label, ingredientType }: SelectorProps) => {
       variant="outlined"
       sx={{ m: 1, minWidth: 120 }}
     >
-      <InputLabel id="demo-simple-select-standard-label">
-        {label}
-      </InputLabel>
+      <InputLabel id="demo-simple-select-standard-label">{label}</InputLabel>
       <Select
         labelId="demo-simple-select-standard-label"
         id="demo-simple-select-standard"

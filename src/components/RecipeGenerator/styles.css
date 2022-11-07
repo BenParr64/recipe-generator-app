@@ -1,6 +1,18 @@
+.kegthat-scrollable{
+  overflow-y: scroll;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
 .kegthat-generator {
   padding-top: 100px;
   width: 90%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: max-content;
 }
 
 @media only screen and (min-width: 992px) {
@@ -32,4 +44,7 @@
   font-size: large;
   font-weight: 500;
   width: 97.9%;
+  height: 2vh;
 }
+
+

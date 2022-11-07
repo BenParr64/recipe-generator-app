@@ -31,7 +31,7 @@ const IngredientListItem = ({ ingredient, ingredientType }: ListItemProps) => {
           required
           type="number"
           className="kegthat-input"
-          defaultValue={1}
+          defaultValue={0}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleOnChange(e)
           }

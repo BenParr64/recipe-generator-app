@@ -33,11 +33,8 @@ const RecipeGenerator = ({ setSubmitted }: RecipeGeneratorProps) => {
   const handlePostRecipe = () => {
     postProduct({
       name: name,
-      categories: [{ id: 555 }],
       regular_price: total.toString(),
-      type: "simple",
       description: getDescription(description, grains!, hops!),
-      short_description: "",
     });
 
     setSubmitted(true);
@@ -55,53 +52,59 @@ const RecipeGenerator = ({ setSubmitted }: RecipeGeneratorProps) => {
 
   return (
     <>
-      <div className="kegthat-generator">
-        <TextField
-          required
-          className="kegthat-row"
-          type="text"
-          label="Recipe Name"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setName(e.currentTarget.value)
-          }
-        />
-        <div className="kegthat-text-container">
+      <div className="kegthat-scrollable">
+        <div className="kegthat-generator">
           <TextField
             required
-            type="text"
             className="kegthat-row"
-            label="Recipe Description"
-            multiline
+            type="text"
+            label="Recipe Name"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setDescription(e.currentTarget.value)
+              setName(e.currentTarget.value)
             }
           />
-        </div>
-        <div className="kegthat-row">
-          <Selector label="Grain Selection" ingredientType="malt" />
-        </div>
-        <div className="kegthat-row">
-          <Selector label="Hop Selection" ingredientType="hop" />
-        </div>
+          <div className="kegthat-text-container">
+            <TextField
+              required
+              type="text"
+              className="kegthat-row"
+              label="Recipe Description"
+              multiline
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setDescription(e.currentTarget.value)
+              }
+            />
+          </div>
+          <div className="kegthat-row">
+            <Selector label="Grain Selection" ingredientType="malt" />
+          </div>
+          <div className="kegthat-row">
+            <Selector label="Hop Selection" ingredientType="hop" />
+          </div>
 
-        {grains && (
-          <IngredientList
-            heading="Fermentables"
-            ingredientType="malt"
-            products={grains}
-          />
-        )}
-        {hops && (
-          <IngredientList heading="Hops" ingredientType="hop" products={hops} />
-        )}
+          {grains && (
+            <IngredientList
+              heading="Fermentables"
+              ingredientType="malt"
+              products={grains}
+            />
+          )}
+          {hops && (
+            <IngredientList
+              heading="Hops"
+              ingredientType="hop"
+              products={hops}
+            />
+          )}
 
-        <Button
-          className="kegthat-row kegthat-button"
-          onClick={handlePostRecipe}
-          variant="contained"
-        >
-          Post Recipe
-        </Button>
+          <Button
+            className="kegthat-row kegthat-button"
+            onClick={handlePostRecipe}
+            variant="contained"
+          >
+            Post Recipe
+          </Button>
+        </div>
       </div>
 
       <div className="kegthat-summary">Total cost: £{total.toFixed(2)}</div>
