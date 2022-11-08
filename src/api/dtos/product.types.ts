@@ -6,5 +6,6 @@ export interface Product {
   type: string;
   price: number;
   description: string;
-  extract: number;
+  extract?: number;
+  permalink?: string;
 }
