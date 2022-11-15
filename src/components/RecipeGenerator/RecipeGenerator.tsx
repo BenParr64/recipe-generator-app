@@ -9,8 +9,9 @@ import Selector from "../IngredientSelector/Selector";
 
 interface RecipeGeneratorProps {
   setSubmitted: (submitted: boolean) => void;
+  setUrl: (url: string) => void;
 }
-const RecipeGenerator = ({ setSubmitted }: RecipeGeneratorProps) => {
+const RecipeGenerator = ({ setSubmitted, setUrl }: RecipeGeneratorProps) => {
   const { recipe, setRecipe } = useRecipeContextState();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -35,9 +36,14 @@ const RecipeGenerator = ({ setSubmitted }: RecipeGeneratorProps) => {
       name: name,
       regular_price: total.toString(),
       description: getDescription(description, grains!, hops!),
-    });
+    }).then((url) => setUrl(url?.permalink!));
 
     setSubmitted(true);
+  };
+
+  const handleClearRecipe = () => {
+    setRecipe({ ingredients: undefined, name: "" });
+    setDescription("");
   };
 
   useEffect(() => {
@@ -97,13 +103,22 @@ const RecipeGenerator = ({ setSubmitted }: RecipeGeneratorProps) => {
             />
           )}
 
-          <Button
-            className="kegthat-row kegthat-button"
-            onClick={handlePostRecipe}
-            variant="contained"
-          >
-            Post Recipe
-          </Button>
+          <div className="kegthat-row kegthat-button-row">
+            <Button
+              className="kegthat-button"
+              onClick={handlePostRecipe}
+              variant="contained"
+            >
+              Post Recipe
+            </Button>
+            <Button
+              className="kegthat-button"
+              onClick={handleClearRecipe}
+              variant="contained"
+            >
+              Clear
+            </Button>
+          </div>
         </div>
       </div>
 

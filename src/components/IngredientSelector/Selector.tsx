@@ -54,8 +54,7 @@ const Selector = ({ label, ingredientType }: SelectorProps) => {
     getProducts(getCategoryId(ingredientType)).then((products) => {
       setProducts(products);
     });
-    console.log("Test");
-  }, []);
+  });
 
   return (
     <FormControl

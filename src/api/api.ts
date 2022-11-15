@@ -1,9 +1,9 @@
 import { json } from "stream/consumers";
 import { basicAuth } from "./basicAuth";
 import { Products } from "./dtos/product.types";
-import { PostProduct } from "./woocommerce.types";
+import { PostProduct, PostProductResult } from "./product.types";
 
-const postProduct = (data: PostProduct) => {
+const postProduct = async (data: PostProduct) => {
   let auth = basicAuth(
     process.env.REACT_APP_WOO_KEY!,
     process.env.REACT_APP_WOO_SECRET!
@@ -19,10 +19,21 @@ const postProduct = (data: PostProduct) => {
     body: JSON.stringify(data),
   };
 
-  const response = fetch(
-    `https://recipe-generator.azurewebsites.net/api/products`,
-    init
-  );
+  try {
+    const response = fetch(
+      `${process.env.REACT_APP_RECIPE_API}/products`,
+      init
+    );
+
+    return await (await response)
+      .json()
+      .then((data) => data as PostProductResult);
+  } catch (error) {
+    console.warn(
+      "Exception posting product content, returning defaults",
+      error
+    );
+  }
 };
 
 const getProducts = async (category: number) => {
@@ -32,7 +43,7 @@ const getProducts = async (category: number) => {
     };
 
     const response = await fetch(
-      `https://recipe-generator.azurewebsites.net/api/products/${category}`,
+      `${process.env.REACT_APP_RECIPE_API}/products/${category}`,
       init
     );
 

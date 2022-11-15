@@ -4,10 +4,13 @@ import "./styles.css";
 
 interface SuccessMessageProps {
   setSubmitted: (submitted: boolean) => void;
+  url: string;
 }
 
-const SuccessMessage = ({ setSubmitted }: SuccessMessageProps) => {
-  const handleViewRecipe = () => {};
+const SuccessMessage = ({ setSubmitted, url }: SuccessMessageProps) => {
+  const handleViewRecipe = () => {
+    window.open(url, "_self");
+  };
   return (
     <div className="kegthat-success">
       <h3>Recipe submitted!</h3>
