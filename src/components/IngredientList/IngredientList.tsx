@@ -1,6 +1,4 @@
-import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { useRecipeContextState } from "../../context/RecipeContext";
+import React from "react";
 import { ProductLine } from "../../context/RecipeContext.types";
 import IngredientListItem from "../IngredientListItem/IngredientListItem";
 import "./styles.css";
@@ -21,6 +19,10 @@ const IngredientList = ({
       <h3>{heading}</h3>
       <div className="kegthat-table">
         <table>
+          <thead>
+            <td className="kegthat-table-col">Item</td>
+            <td className="kegthat-table-col">Quantity (G)</td>
+          </thead>
           <tbody>
             {products.map((product, index) => (
               <IngredientListItem
