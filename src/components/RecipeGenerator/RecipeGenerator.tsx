@@ -103,7 +103,7 @@ const RecipeGenerator = ({ setSubmitted, setUrl }: RecipeGeneratorProps) => {
             />
           )}
 
-          <div className="kegthat-row kegthat-button-row">
+          <div className="kegthat-row kegthat-button-row post-buttons">
             <Button
               className="kegthat-button"
               onClick={handlePostRecipe}
