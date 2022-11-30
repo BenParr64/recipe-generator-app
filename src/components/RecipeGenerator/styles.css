@@ -23,6 +23,15 @@
 
 .kegthat-row {
   width: 350px;
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .kegthat-row {
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+  }
 }
 
 .kegthat-button-row{
